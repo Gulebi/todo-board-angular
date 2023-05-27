@@ -1,0 +1,33 @@
+<div
+    class="absolute animation-slide-in-br w-[130px] h-[134px] select-none"
+    [style.left.px]="todoData.pos.x"
+    [style.top.px]="todoData.pos.y"
+>
+    <div [ngClass]="isDeleted ? 'animation-slide-out-bottom' : ''" (click)="$event.stopPropagation()">
+        <img src="/assets/paper.png" class="absolute w-[130px]" />
+        <div class="absolute h-full w-full p-3">
+            <textarea
+                class="h-full w-full bg-transparent resize-none overflow-hidden outline-zinc-900"
+                spellcheck="false"
+                [(ngModel)]="todoData.text"
+                (ngModelChange)="todoChange()"
+                (focus)="textFocus()"
+                [style.font-size.px]="20 - (todoData.text.length / 5) * 0.5"
+            ></textarea>
+            <p
+                class="absolute text-4xl text-zinc-900 top-[89px] left-[97px]"
+                (click)="todoChange(!todoData.isDone)"
+                [style.opacity]="!todoData.isDone ? 0 : 1"
+            >
+                ✔
+            </p>
+        </div>
+    </div>
+    <img
+        src="/assets/pin.png"
+        class="absolute w-[22px] left-[48px] top-[-17px] z-10"
+        (click)="deleteTodo(todoData, $event)"
+        [ngClass]="isDeleted ? 'animation-slide-out-tl' : ''"
+    />
+</div>
+

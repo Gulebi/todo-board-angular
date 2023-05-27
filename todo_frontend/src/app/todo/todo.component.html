@@ -1,0 +1,13 @@
+<div class="relative h-screen bg-black p-[28px] overflow-hidden">
+    <div
+        class="shadow-[0px_0px_8px_6px_rgba(0,0,0,0.3)_inset] bg-board-image bg-center h-full [border-image:url('/assets/border.png')_64_/_48px_/_28px]"
+        (click)="addTodo($event)"
+        id="board"
+    >
+        <app-todo-card
+            *ngFor="let todo of todos$$ | async; trackBy: trackByFn"
+            [todoData]="todo"
+            (isEditingEvent)="receiveIsEditing()"
+        ></app-todo-card>
+    </div>
+</div>
